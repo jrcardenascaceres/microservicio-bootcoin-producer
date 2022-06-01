@@ -1,0 +1,23 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: microservicio-bootcoin-producer
+  kafka:
+    bootstrap-servers: rocket-01.srvs.cloudkafka.com:9094,rocket-02.srvs.cloudkafka.com:9094,rocket-03.srvs.cloudkafka.com:9094
+    properties:
+      security:
+        protocol: SASL_SSL
+      sasl:
+        mechanism: SCRAM-SHA-256
+        jaas:
+          config: org.apache.kafka.common.security.scram.ScramLoginModule required username="dovr8xz5" password="dsHXE8ZLWbvhSoSinJAdc2ulq174yATa";
+  cloud:
+    stream:
+      bindings:
+        saveCurrency-out-0:
+          destination: dovr8xz5-currency
+        saveWallet-out-0:
+            destination: dovr8xz5-wallet
+        saveTransaction-out-0:
+          destination: dovr8xz5-transaction
